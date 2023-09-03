@@ -6,8 +6,12 @@ const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io
 const address = ''
 
 const main = async () => {
-    const balance = await provider.getBalance(address)
-    console.log(`\nETH Balance of ${address} --> ${ethers.utils.formatEther(balance)} ETH\n`)
+    try {
+        const balance = await provider.getBalance(address)
+        console.log(`\nETH Balance of ${address} --> ${ethers.utils.formatEther(balance)} ETH\n`)
+    } catch (error) {
+        console.error('Error:', error.message || error);
+    }
 }
 
 main()
